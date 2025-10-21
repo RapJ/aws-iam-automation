@@ -1,2 +1,2 @@
 # aws-iam-automation
-This project automates the setup and management of secure Identity and Access Management (IAM) and network infrastructure in AWS using Bash scripting and GitHub Actions (CI/CD).  The automation ensures consistent and secure creation of users, groups, roles, and access policies — reducing manual configuration errors and improving deployment effic...
+This project automates the setup and management of secure Identity and Access Management (IAM) and network infrastructure in AWS using Bash scripting and GitHub Actions (CI/CD).  The automation ensures consistent and secure creation of users, groups, roles, and access policies — reducing manual configuration errors and improving deployment efficiency.
