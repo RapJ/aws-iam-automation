@@ -3,7 +3,7 @@ name: Deploy AWS IAM Project
 on:
   push:
     branches:
-      - main
+      - devkojo
       - master
 
 jobs:
