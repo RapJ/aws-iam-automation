@@ -118,8 +118,8 @@ aws-iam-cicd-project/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/aws-iam-cicd-project.git
-   cd aws-iam-cicd-project
+   git clone (https://github.com/RapJ/aws-iam-automation.git)
+   cd aws-iam-automation
    ```
 
 2. **Add AWS credentials in GitHub Secrets**
