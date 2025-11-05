@@ -108,7 +108,7 @@ Developer → Push to GitHub → GitHub Actions Deploy → AWS CLI Executes → 
 - All AWS resources tagged for auditing  
 
 📸 *Placeholder:*  
-![GitHub Secrets Setup](images/github_secrets.png)
+![GitHub Secrets Setup](images/Capstone-9.PNG)
 
 ---
 
