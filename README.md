@@ -34,7 +34,8 @@ Below is a conceptual design of the automated AWS setup:
 ```
 
 📸 *Image Placeholder:*  
-![AWS Architecture Diagram](images/aws_architecture_diagram.png)
+
+![AWS Architecture Diagram](images/Capstone-11.png)
 
 ---
 
@@ -77,6 +78,17 @@ bash cleanup_iam.sh
 | `deploy.yml` | On push to `main` | Deploys VPC, IAM groups, and users |
 | `cleanup.yml` | Manual trigger | Cleans up all AWS resources |
 
+┌──────────────┐      ┌─────────────────────┐      ┌───────────────────────┐
+│  Developer   │ ---> │  Push to GitHub     │ ---> │  GitHub Actions Deploy │
+└──────────────┘      └─────────────────────┘      └───────────────────────┘
+                                                          │
+                                                          ▼
+                                                  AWS CLI Executes Scripts
+                                                          │
+                                                          ▼
+                                                   IAM + VPC Created
+
+
 📸 *Placeholder:*  
 ![GitHub Pipeline](images/github_pipeline.png)
 
@@ -89,6 +101,7 @@ Developer → Push to GitHub → GitHub Actions Deploy → AWS CLI Executes → 
 
 ## 🔐 Security Considerations
 - AWS credentials stored as **GitHub Secrets**
+  - `AWS_REGION`
   - `AWS_ACCESS_KEY_ID`
   - `AWS_SECRET_ACCESS_KEY`
 - IAM uses **least privilege** model  
