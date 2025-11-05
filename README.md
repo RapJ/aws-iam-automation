@@ -53,7 +53,7 @@ bash deploy_iam.sh
 ```
 
 📸 *Placeholder:*  
-![Deployment CLI Output](images/deployment_success.png)
+![Deployment CLI Output](images/aws_proj_2iAM.JPG)
 
 ---
 
