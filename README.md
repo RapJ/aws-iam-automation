@@ -90,7 +90,7 @@ bash cleanup_iam.sh
 
 
 📸 *Placeholder:*  
-![GitHub Pipeline](images/github_pipeline.png)
+![GitHub Pipeline](images/Capstone-2.PNG)
 
 ### **CI/CD Flow Diagram**
 ```
@@ -184,6 +184,141 @@ Add screenshots for submission:
 - Screenshot folder `/images`  
 
 ---
+
+⚠️ Challenges Faced During Execution
+
+Implementing this AWS IAM automation project came with several technical and procedural challenges. Below are the key difficulties encountered and how they were addressed:
+
+1️⃣ AWS Resource Limits
+
+Challenge:
+While creating VPCs using AWS CLI, the error VpcLimitExceeded occurred because the default AWS account allows only 5 VPCs per region.
+
+Resolution:
+Manually deleted unused VPCs using:
+
+aws ec2 delete-vpc --vpc-id <vpc-id>
+
+
+or requested a limit increase from AWS Support.
+
+2️⃣ Existing IAM Entities
+
+Challenge:
+Repeated executions of the automation scripts resulted in errors such as:
+
+EntityAlreadyExists: Group with name WebAdmins already exists.
+
+
+and
+
+EntityAlreadyExists: User with name TestWebUser already exists.
+
+
+Resolution:
+Enhanced the script with logic to check if a user or group already exists before creating it, preventing duplication and errors.
+
+3️⃣ AWS CLI Parameter Errors
+
+Challenge:
+Errors like
+
+MissingParameter: The request must contain the parameter resourceIdSet
+
+
+occurred when tagging VPCs or subnets before their IDs were captured.
+
+Resolution:
+Used command substitution properly:
+
+VPC_ID=$(aws ec2 create-vpc --cidr-block 10.0.0.0/16 --query 'Vpc.VpcId' --output text)
+
+
+and added delays (sleep 3) after creation to ensure resource availability before tagging.
+
+4️⃣ Region Configuration
+
+Challenge:
+Scripts failed when the AWS CLI default region wasn’t set, causing errors like:
+
+You must specify a region. You can also configure your region by running "aws configure".
+
+
+Resolution:
+Explicitly added the region flag to every AWS CLI command:
+
+--region eu-north-1
+
+5️⃣ GitHub Actions Permission Setup
+
+Challenge:
+The GitHub CI/CD workflows initially failed because AWS credentials were not configured in GitHub Secrets.
+
+Resolution:
+Added the required credentials in the repository under:
+Settings → Secrets and Variables → Actions → New Repository Secret
+
+AWS_ACCESS_KEY_ID
+
+AWS_SECRET_ACCESS_KEY
+
+6️⃣ IAM Policy Permissions
+
+Challenge:
+Certain IAM operations were denied due to insufficient permissions tied to the AWS user executing the CLI commands.
+
+Resolution:
+Granted temporary AdministratorAccess or ensured the user had specific IAM privileges such as:
+
+iam:CreateUser
+
+iam:CreateGroup
+
+iam:AttachGroupPolicy
+
+ec2:CreateVpc
+
+ec2:CreateSubnet
+
+7️⃣ CI/CD Workflow Debugging
+
+Challenge:
+GitHub Actions failed silently when YAML formatting was incorrect.
+
+Resolution:
+Validated the workflows using:
+
+act -j deploy
+
+
+and online YAML linting tools to verify syntax correctness.
+
+8️⃣ Cleanup Automation
+
+Challenge:
+Automating cleanup required careful sequencing — IAM users must be removed from groups before groups can be deleted.
+
+Resolution:
+Modified the cleanup_iam.sh script to:
+
+Detach policies
+
+Remove users from groups
+
+Delete groups and users in the correct order
+
+9️⃣ Time Delays in Resource Propagation
+
+Challenge:
+AWS resources (like IAM entities) take a few seconds to propagate globally. Immediate verification commands sometimes failed.
+
+Resolution:
+Added short pauses (sleep 5) between critical operations to allow AWS propagation.
+
+🔟 Documentation and Visual Design
+
+Challenge:
+Creating a professional and explanatory visual (architecture diagram, workflow chart, screenshots) took extra time for clarity and presentation.
 
 ## 🏁 Summary
 This project showcases **end-to-end DevOps automation** using AWS and GitHub.  
