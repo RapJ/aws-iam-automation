@@ -50,7 +50,7 @@ Automates:
 
 Run manually:
 ```bash
-bash deploy_iam.sh
+ ./deploy_iam.sh
 ```
 
 📸 *Placeholder:*  
@@ -63,7 +63,7 @@ Safely deletes all created AWS resources.
 
 Run manually:
 ```bash
-bash cleanup_iam.sh
+ ./cleanup_iam.sh
 ```
 
 📸 *Placeholder:*  
@@ -114,7 +114,7 @@ Developer → Push to GitHub → GitHub Actions Deploy → AWS CLI Executes → 
 
 ## 🧱 Folder Structure
 ```
-aws-iam-cicd-project/
+aws-iam-automation/
 │
 ├── deploy_iam.sh
 ├── cleanup_iam.sh
