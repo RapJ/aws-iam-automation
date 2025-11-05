@@ -66,9 +66,6 @@ Run manually:
  ./cleanup_iam.sh
 ```
 
-📸 *Placeholder:*  
-![Cleanup CLI Output](images/cleanup_success.png)
-
 ---
 
 ## 🔁 CI/CD Pipeline (GitHub Actions)
